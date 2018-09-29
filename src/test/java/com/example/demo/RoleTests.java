@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -58,7 +59,7 @@ public class RoleTests
         authorDAO.saveAll(Arrays.asList(lewis, mark, peter));
     }
 
-    @After
+//    @After
     @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public void deleteAll()
     {
@@ -82,8 +83,22 @@ public class RoleTests
     }
 
     @Test
-    public void delete()
+    public void deleteOne()
     {
+        Role role = roleDAO.findByName("role1");
+        Set<Author> authors = role.getAuthors();
+        for (Author author : authors)
+        {
+            author.setRole(null);
+        }
+        authorDAO.saveAll(authors);
+        roleDAO.delete(role);
+    }
 
+    @Test
+    public void deleteMany()
+    {
+        Author author = authorDAO.findByName("Lewis");
+        authorDAO.delete(author);
     }
 }
