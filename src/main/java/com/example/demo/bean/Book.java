@@ -23,6 +23,9 @@ public class Book
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "books")
     private Set<Author> authors;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
+    private Set<AuthorBook> authorBooks;
+
     public Book()
     {
         this.authors = new HashSet<>();
@@ -62,5 +65,15 @@ public class Book
     public void setAuthors(Set<Author> authors)
     {
         this.authors = authors;
+    }
+
+    public Set<AuthorBook> getAuthorBooks()
+    {
+        return authorBooks;
+    }
+
+    public void setAuthorBooks(Set<AuthorBook> authorBooks)
+    {
+        this.authorBooks = authorBooks;
     }
 }

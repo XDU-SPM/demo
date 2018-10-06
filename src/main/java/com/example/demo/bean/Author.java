@@ -14,7 +14,8 @@ public class Author
 
     private String name;
 
-    /**+
+    /**
+     * +
      * 多对多的主表
      * 有 @JoinTable, name 最好是 "主表_从表"
      * 有 CascadeType.ALL
@@ -34,6 +35,9 @@ public class Author
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "rid")
     private Role role;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "author")
+    private Set<AuthorBook> authorBooks;
 
     public Author()
     {
@@ -84,5 +88,15 @@ public class Author
     public void setRole(Role role)
     {
         this.role = role;
+    }
+
+    public Set<AuthorBook> getAuthorBooks()
+    {
+        return authorBooks;
+    }
+
+    public void setAuthorBooks(Set<AuthorBook> authorBooks)
+    {
+        this.authorBooks = authorBooks;
     }
 }

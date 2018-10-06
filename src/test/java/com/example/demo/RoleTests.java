@@ -59,7 +59,7 @@ public class RoleTests
         authorDAO.saveAll(Arrays.asList(lewis, mark, peter));
     }
 
-//    @After
+    @After
     @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public void deleteAll()
     {
@@ -73,6 +73,12 @@ public class RoleTests
         assertThat(roleDAO.findByName("role1").getAuthors().size()).isEqualTo(0);
         roleDAO.deleteAll();
         authorDAO.deleteAll();
+    }
+
+    @Test
+    public void test()
+    {
+
     }
 
     @Test

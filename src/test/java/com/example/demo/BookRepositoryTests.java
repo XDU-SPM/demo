@@ -41,6 +41,7 @@ public class BookRepositoryTests
         lewis.getBooks().addAll(Arrays.asList(spring, springboot));
         mark.getBooks().add(spring);
         peter.getBooks().add(springboot);
+
         authorDAO.saveAll(Arrays.asList(lewis, mark, peter));
     }
 
@@ -123,6 +124,12 @@ public class BookRepositoryTests
         {
             System.out.println(book.getName());
         }
+    }
+
+    @Test
+    public void aAVoid()
+    {
+
     }
 
     @Test
